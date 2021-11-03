@@ -21,10 +21,7 @@ class Matrix:
                 temp.append(inp_element())
             self.mtx.append(temp)
 
-
-
-
-    #def print_matrix(self):
+    # def print_matrix(self):
     #    #mtx = np.matrix(self.mtx)
     #    print(self.mtx)
     #    #display(Math(sp.latex(sp.Matrix(sp.sympify(self.mtx, rational=True)))))
@@ -34,4 +31,3 @@ class Matrix:
     # def sub(self):
     # def mul(self):
     # def div(self):
-
