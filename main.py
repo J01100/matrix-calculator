@@ -2,6 +2,7 @@ import numpy as np
 import sympy as sp
 import tkinter as t
 from IPython.display import display, Math
+from input import *
 from matrix import *
 
 
