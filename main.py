@@ -2,7 +2,6 @@ import numpy as np
 import sympy as sp
 from tkinter import *
 from IPython.display import display, Math
-from input import *
 from matrix import *
 
 
@@ -11,16 +10,22 @@ def main():
 
     # create objects
     label = Label(window, text="Matrix Operations")
-    text = Text(window, cnf={'bg': 'blue'})
-    button = Button(window, text="button")
+    label2 = Label(window, text="Choose operation:")
+
+    add_matrix = Button(window, text="button")
+    sub_matrix = Button(window, text="button")
+    mlt_matrix = Button(window, text="button")
 
     # show objects in screen
     label.pack()
-    text.pack()
-    button.pack()
+    label2.pack()
+    add_matrix.pack()
+    sub_matrix.pack()
+    mlt_matrix.pack()
 
     # run window
     window.mainloop()
+
 
 # a = Matrix(inp_length(), inp_height())
 # a.enter_values()

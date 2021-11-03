@@ -6,7 +6,6 @@ to be added:
 add matrix
 sub matrix
 mlt matrix
-div matrix
 inv matrix
 
 tkinter gui
