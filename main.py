@@ -2,11 +2,11 @@ import numpy as np
 import sympy as sp
 from IPython.display import display, Math
 from matrix import *
-from matrix_operations import MatrixOperations
+from menu import Menu
 
 
 def main():
-    MatrixOperations()
+    Menu()
 
 
 if __name__ == '__main__':
