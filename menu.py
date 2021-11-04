@@ -1,8 +1,9 @@
 from tkinter import *
 from operations import *
+import operations
 
 
-gui_menu = Tk(className="Mtx Operations")
+gui_menu = Tk(className="MtxOp")
 
 
 class Menu:
