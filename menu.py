@@ -1,5 +1,5 @@
 from tkinter import *
-from operations import *
+from operations import Inverse
 import operations
 
 
@@ -14,7 +14,7 @@ class Menu:
         # create label
         label = Label(gui_menu, text="Choose Operation:", pady=10)
 
-        inv = Button(gui_menu, text="Inverse", padx=30, pady=5, command=inverse_op)
+        inv = Button(text="Inverse", padx=30, pady=5, command=operations.inverse_dimensions_menu)
         add = Button(gui_menu, text="Add", padx=40, pady=5)
         sub = Button(gui_menu, text="Subtract", padx=25, pady=5)
         mlt = Button(gui_menu, text="Multiply", padx=28, pady=5)
