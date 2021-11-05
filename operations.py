@@ -6,6 +6,8 @@ from tkinter import *
 # figure out how to record the entry values to print the matrix and do the operations.
 # print the input matrix and the output matrix
 
+arr = []
+
 
 def inverse_dimensions_menu():
     menu.gui_menu.destroy()
@@ -27,10 +29,13 @@ def inverse_dimensions_menu():
 
     # Entry(inverse_wdw, textvariable=m_length, justify=RIGHT, width=2).grid(row=3, column=2)
     # Entry(inverse_wdw, textvariable=m_height, justify=RIGHT, width=2).grid(row=4, column=2)
+    def inverse_output():
+        list_to_string= ' '.join(map(str, arr))
+        Label(inverse_wdw, text='OUTPUT').grid(row=5, column=3)
+        Label(inverse_wdw, text=list_to_string).grid(row=6, column=3)
 
     def inverse_input():
         # create array storage based on dimensions
-        arr = []
         for i in range(m_height.get()):
             temp = []
             for j in range(m_length.get()):
@@ -45,6 +50,8 @@ def inverse_dimensions_menu():
                     Label(inverse_wdw, text=j + 1).grid(row=1, column=j+4)
                 Entry(inverse_wdw, textvariable=arr[i][j], width=2).grid(row=i+3, column=j+4)
             Label(inverse_wdw, text=i+1).grid(row=i+3, column=3, sticky='e')
+        Button(inverse_wdw, text='Enter', padx=16, pady=5, command=inverse_output).grid(row=m_height.get()+3,
+                                                                                        column=m_length.get()+3)
 
     Button(inverse_wdw, text='Enter', padx=16, pady=5, command=inverse_input).grid(row=5, column=2)
 
