@@ -17,22 +17,22 @@ class Inverse:
                 for j in range(self.cols):
                     self.matrix[i][j] = int(self.matrix[i][j])
 
-        except ValueError:
-            Label(self.frame_inverse_output, text="Invalid input(s)").grid(row=2, column=1)
+        except NameError or TypeError:
+            Label(self.frame_inverse_output, text="Invalid input(s)").grid(row=1, column=2)
 
         try:
             # invert matrix then convert back to string
-            list_mat = [str(i) for i in (inv(self.matrix))]
+            self.matrix = inv(self.matrix)
+            list_mat = [str(i) for i in self.matrix]
 
             # remove square brackets
             for i in range(len(list_mat)):
                 list_mat[i] = list_mat[i][1:-1]
-
             return list_mat
 
-        except Exception:
-            Label(self.frame_inverse_output, text="(Your matrix is").grid(row=2, column=self.cols * 2 + 1)
-            Label(self.frame_inverse_output, text="not invertible!)").grid(row=3, column=self.cols * 2 + 1)
+        except TypeError:
+            Label(self.frame_inverse_output, text="(Your matrix is").grid(row=1, column=self.cols * 2 + 1)
+            Label(self.frame_inverse_output, text="not invertible!)").grid(row=2, column=self.cols * 2 + 1)
 
     def output_matrix(self):
         # create window
@@ -44,7 +44,7 @@ class Inverse:
         self.frame_inverse_output = Frame(self.gui_inverse_output, highlightbackground='black', highlightthickness=1)
         self.frame_inverse_output.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
-        # go back to menu buttton
+        # go back to menu button
         Button(self.frame_inverse_output, text="Back", width=4, command=self.back_to_menu).grid(
             row=self.rows + 10,
             column=1)
@@ -57,11 +57,15 @@ class Inverse:
 
         # display output
         Label(self.frame_inverse_output, text='Output:', font=('arial', 10, 'bold'), underline=0).grid(row=1,
-                                                                                                       column=self.cols * 2)
-        for i in range(self.rows):
-            for j in range(self.cols):
-                Label(self.frame_inverse_output, text=self.compute_inverse()[i], bd=5).grid(
+                                                                                                       column=self.cols*2)
+
+        inverse_matrix = self.compute_inverse()
+        try:
+            for i in range(self.rows):
+                Label(self.frame_inverse_output, text=inverse_matrix[i], bd=5).grid(
                     row=i + 2, column=self.cols * 2 + 1)
+        except Exception:
+            pass
 
     def input_matrix(self):
         self.gui_inverse_menu.destroy()
@@ -81,7 +85,7 @@ class Inverse:
         # to create matrix of entry cells we need to create a 2d list of entries
         # thank god to stackoverflow peeps for that
 
-        # empty arrays for Entrys and StringVars
+        # empty arrays for Entry and StringVars
         text_var = []
         entries = []
 
