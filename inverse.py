@@ -1,7 +1,7 @@
-from tkinter import Tk, Label, Button, Entry, OptionMenu, IntVar, StringVar, Frame
+from tkinter import Tk, Label, Button, Entry, OptionMenu, IntVar, StringVar, Frame, Toplevel
 from tkinter.constants import BOTH
 from numpy.linalg import inv
-import numpy as np
+
 import menu
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
@@ -9,7 +9,8 @@ alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 class Inverse:
     def back_to_menu(self):
-        pass
+        self.gui_inverse_output.destroy()
+        menu.gui_menu.deiconify()
 
     def compute_inverse(self):
         # convert matrix of strings to integers
@@ -38,7 +39,7 @@ class Inverse:
     def output_matrix(self):
         # create window
         self.gui_inverse_input.destroy()
-        self.gui_inverse_output = Tk()
+        self.gui_inverse_output = Toplevel()
         self.gui_inverse_output.title("Inverse")
         self.gui_inverse_output.resizable(False, False)
 
@@ -47,8 +48,8 @@ class Inverse:
 
         # go back to menu button
         Button(self.frame_inverse_output, text="Back", width=4, command=self.back_to_menu).grid(
-            row=self.rows + 10,
-            column=1)
+           row=self.rows + 10,
+           column=1)
 
         # display user input
         Label(self.frame_inverse_output, text='Input:', font=('arial', 10, 'bold'), underline=0).grid(row=1, column=1)
@@ -58,7 +59,7 @@ class Inverse:
 
         # display output
         Label(self.frame_inverse_output, text='Output:', font=('arial', 10, 'bold'), underline=0).grid(row=1,
-                                                                                                       column=self.cols*2)
+                                                                                                       column=self.cols * 2)
 
         inverse_matrix = self.compute_inverse()
         try:
@@ -70,7 +71,7 @@ class Inverse:
 
     def input_matrix(self):
         self.gui_inverse_menu.destroy()
-        self.gui_inverse_input = Tk()
+        self.gui_inverse_input = Toplevel()
         self.gui_inverse_input.title("Inverse")
         self.gui_inverse_input.resizable(False, False)
 
@@ -135,8 +136,8 @@ class Inverse:
         self.rows, self.cols = None, None
         self.matrix = None
 
-        menu.gui_menu.destroy()
-        self.gui_inverse_menu = Tk()
+        menu.gui_menu.withdraw()
+        self.gui_inverse_menu = Toplevel()
         self.gui_inverse_menu.title("Inverse")
         self.gui_inverse_menu.resizable(False, False)
 
