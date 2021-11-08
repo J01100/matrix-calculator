@@ -44,24 +44,32 @@ class Inverse:
         self.frame_inverse_output = Frame(self.gui_inverse_output, highlightbackground='black', highlightthickness=1)
         self.frame_inverse_output.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
-        # go back to menu buttton
-        Button(self.frame_inverse_output, text="Back", width=4, command=self.back_to_menu).grid(
-            row=self.rows + 10,
-            column=1)
-
         # display user input
-        Label(self.frame_inverse_output, text='Input:', font=('arial', 10, 'bold'), underline=0).grid(row=1, column=1)
+        Label(self.frame_inverse_output, text='Input:', font=('arial', 10, 'bold')).grid(row=1, column=1)
         for i in range(self.rows):
             for j in range(self.cols):
                 Label(self.frame_inverse_output, text=self.matrix[i][j], bd=5).grid(row=i + 2, column=j + 2)
 
         # display output
-        Label(self.frame_inverse_output, text='Output:', font=('arial', 10, 'bold'), underline=0).grid(row=1,
-                                                                                                       column=self.cols * 2)
-        for i in range(self.rows):
-            for j in range(self.cols):
-                Label(self.frame_inverse_output, text=self.compute_inverse()[i], bd=5).grid(
-                    row=i + 2, column=self.cols * 2 + 1)
+        if self.cols <= self.rows:
+            Label(self.frame_inverse_output, text='Output:', font=('arial', 10, 'bold')).grid(row=1,
+                                                                                              column=self.cols * 2)
+            for i in range(self.rows):
+                for j in range(self.cols):
+                    Label(self.frame_inverse_output, text=self.compute_inverse()[i], bd=5).grid(
+                        row=i + 2, column=self.cols * 2 + 1)
+        else:
+            Label(self.frame_inverse_output, text='Output:', font=('arial', 10, 'bold')).grid(row=self.rows*2,
+                                                                                              column=1)
+            for i in range(self.rows):
+                for j in range(self.cols):
+                    Label(self.frame_inverse_output, text=self.compute_inverse()[i], bd=5).grid(
+                        row=self.rows*2+1, column=2)
+
+        # go back to menu buttton
+        Button(self.frame_inverse_output, text="Back", width=4, command=self.back_to_menu).grid(
+            row=self.m_height.get() + 10,
+            column=1)
 
     def input_matrix(self):
         self.gui_inverse_menu.destroy()
@@ -85,7 +93,7 @@ class Inverse:
         text_var = []
         entries = []
 
-        self.rows, self.cols = (self.m_dimensions.get(), self.m_dimensions.get())
+        self.rows, self.cols = (self.m_length.get(), self.m_height.get())
         for i in range(self.rows):
             # append an empty list to arrays to append to later
             text_var.append([])
@@ -117,7 +125,7 @@ class Inverse:
                     self.matrix[i2].append(text_var[i2][j2].get())
             self.output_matrix()
 
-        Button(self.frame_inverse_input, text="Enter", width=8, command=get_mat).grid(row=self.cols + 10,
+        Button(self.frame_inverse_input, text="Enter", width=8, command=get_mat).grid(row=self.m_height.get() + 10,
                                                                                       column=1)
 
         self.gui_inverse_input.mainloop()
@@ -138,11 +146,15 @@ class Inverse:
         self.frame_inverse_menu = Frame(self.gui_inverse_menu, highlightbackground='black', highlightthickness=1)
         self.frame_inverse_menu.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
-        Label(self.frame_inverse_menu, text='Enter matrix dimensions:').grid(row=4, column=1)
+        Label(self.frame_inverse_menu, text='Enter matrix length:').grid(row=3, column=1)
+        Label(self.frame_inverse_menu, text='Enter matrix height:').grid(row=4, column=1)
 
         # enter matrix dimensions
-        self.m_dimensions = IntVar()
-        self.m_dimensions.set(2)
-        OptionMenu(self.frame_inverse_menu, self.m_dimensions, *range(2, 16)).grid(row=4, column=2)
+        self.m_length = IntVar()
+        self.m_height = IntVar()
+        self.m_length.set(2)
+        self.m_height.set(2)
+        OptionMenu(self.frame_inverse_menu, self.m_length, *range(2, 11)).grid(row=3, column=2)
+        OptionMenu(self.frame_inverse_menu, self.m_height, *range(2, 11)).grid(row=4, column=2)
 
         Button(self.frame_inverse_menu, text='Enter', padx=16, pady=5, command=self.input_matrix).grid(row=5, column=2)
