@@ -59,6 +59,7 @@ class Inverse:
                     Label(self.frame_inverse_output, text=self.compute_inverse()[i], bd=5).grid(
                         row=i + 2, column=self.cols * 2 + 1)
 
+        # go back to menu buttton
         Button(self.frame_inverse_output, text="Back", width=4, command=self.back_to_menu).grid(
             row=self.m_height.get() + 10,
             column=1)

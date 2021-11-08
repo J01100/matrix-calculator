@@ -1,7 +1,6 @@
 to be added:
 
-output inverted matrix 
-
+change to frame by freme control system instead of destroying windows.
 back to menu button 
 
 work matrix addition button 
