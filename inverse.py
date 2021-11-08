@@ -1,7 +1,6 @@
 from tkinter import Label, Button, Entry, OptionMenu, IntVar, StringVar, Frame, Toplevel
 from tkinter.constants import BOTH
 from numpy.linalg import inv
-
 import menu
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
@@ -55,7 +54,7 @@ class Inverse:
         Label(self.frame_inverse_output, text='Input:', font=('arial', 10, 'bold'), underline=0).grid(row=1, column=1)
         for i in range(self.rows):
             for j in range(self.cols):
-                Label(self.frame_inverse_output, text=self.matrix[i][j], bd=5).grid(row=i + 2, column=j + 2)
+                Label(self.frame_inverse_output, text=self.matrix[i][j], bd=5).grid(row=i + 1, column=j + 2)
 
         # display output
         Label(self.frame_inverse_output, text='Output:', font=('arial', 10, 'bold'), underline=0).grid(row=1,
@@ -64,7 +63,7 @@ class Inverse:
         inverse_matrix = self.compute_inverse()
         for i in range(self.rows):
             Label(self.frame_inverse_output, text=inverse_matrix[i], bd=5).grid(
-                row=i + 2, column=self.cols * 2 + 1)
+                row=i + 1, column=self.cols * 2 + 1)
 
         # def disable_event():
         #    pass
@@ -155,7 +154,7 @@ class Inverse:
         self.frame_inverse_menu = Frame(self.gui_inverse_menu, highlightbackground='black', highlightthickness=1)
         self.frame_inverse_menu.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
-        Label(self.frame_inverse_menu, text='Enter matrix dimensions:').grid(row=4, column=1)
+        Label(self.frame_inverse_menu, text='Enter matrix dimensions:', font=('arial', 10, 'bold')).grid(row=4, column=1)
 
         # enter matrix dimensions
         self.m_dimensions = IntVar()

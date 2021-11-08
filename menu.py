@@ -1,6 +1,7 @@
 from tkinter import Tk, Label, Button, Frame
 from tkinter.constants import BOTH
 import inverse
+import multi
 
 gui_menu = Tk()
 gui_menu.geometry('150x180')
@@ -17,7 +18,7 @@ class Menu:
         inv = Button(frame_menu, text="Inverse", padx=30, pady=5, command=inverse.Inverse)
         add = Button(frame_menu, text="Add", padx=40, pady=5)
         sub = Button(frame_menu, text="Subtract", padx=25, pady=5)
-        mlt = Button(frame_menu, text="Multiply", padx=28, pady=5)
+        mlt = Button(frame_menu, text="Multiply", padx=28, pady=5, command=multi.Multi)
 
         label.pack()
         inv.pack()
