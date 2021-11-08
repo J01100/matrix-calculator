@@ -1,4 +1,4 @@
-from tkinter import Tk, Label, Button, Entry, OptionMenu, IntVar, StringVar, Frame, Toplevel
+from tkinter import Label, Button, Entry, OptionMenu, IntVar, StringVar, Frame, Toplevel
 from tkinter.constants import BOTH
 from numpy.linalg import inv
 
@@ -19,7 +19,7 @@ class Inverse:
                 for j in range(self.cols):
                     self.matrix[i][j] = int(self.matrix[i][j])
 
-        except NameError or TypeError:
+        except NameError or TypeError or Exception:
             Label(self.frame_inverse_output, text="Invalid input(s)").grid(row=1, column=2)
 
         try:
@@ -32,7 +32,7 @@ class Inverse:
                 list_mat[i] = list_mat[i][1:-1]
             return list_mat
 
-        except TypeError:
+        except TypeError or Exception:
             Label(self.frame_inverse_output, text="(Your matrix is").grid(row=1, column=self.cols * 2 + 1)
             Label(self.frame_inverse_output, text="not invertible!)").grid(row=2, column=self.cols * 2 + 1)
 
@@ -48,8 +48,8 @@ class Inverse:
 
         # go back to menu button
         Button(self.frame_inverse_output, text="Back", width=4, command=self.back_to_menu).grid(
-           row=self.rows + 10,
-           column=1)
+            row=self.rows + 10,
+            column=1)
 
         # display user input
         Label(self.frame_inverse_output, text='Input:', font=('arial', 10, 'bold'), underline=0).grid(row=1, column=1)
@@ -62,12 +62,15 @@ class Inverse:
                                                                                                        column=self.cols * 2)
 
         inverse_matrix = self.compute_inverse()
-        try:
-            for i in range(self.rows):
-                Label(self.frame_inverse_output, text=inverse_matrix[i], bd=5).grid(
-                    row=i + 2, column=self.cols * 2 + 1)
-        except Exception:
-            pass
+        for i in range(self.rows):
+            Label(self.frame_inverse_output, text=inverse_matrix[i], bd=5).grid(
+                row=i + 2, column=self.cols * 2 + 1)
+
+        # def disable_event():
+        #    pass
+
+        self.gui_inverse_output.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
+        self.gui_inverse_output.mainloop()
 
     def input_matrix(self):
         self.gui_inverse_menu.destroy()
@@ -80,7 +83,7 @@ class Inverse:
         # window_dimensions = str(self.m_length.get()**3+90) + "x" + str(self.m_height.get())
         # print(window_dimensions)
         # window.geometry(window_dimensions)
-        self.gui_inverse_input.resizable(False, False)
+        # self.gui_inverse_input.resizable(False, False)
 
         Label(self.frame_inverse_input, text="Enter matrix:", font=('arial', 10, 'bold')).grid(row=1, column=1)
 
@@ -115,17 +118,25 @@ class Inverse:
 
         # callback function to get StringVars/convert them to strings
         # and store in matrix[]
+
         def get_mat():
-            self.matrix = []
-            for i2 in range(self.rows):
-                self.matrix.append([])
-                for j2 in range(self.cols):
-                    self.matrix[i2].append(text_var[i2][j2].get())
-            self.output_matrix()
+            try:
+                self.matrix = []
+                for i2 in range(self.rows):
+                    self.matrix.append([])
+                    for j2 in range(self.cols):
+                        self.matrix[i2].append(text_var[i2][j2].get())
+                self.output_matrix()
+
+            except ValueError or Exception:
+                Label(self.frame_inverse_output, text="Invalid input(s)").grid(row=1, column=2)
+                Label(self.frame_inverse_output, text="(Your matrix is").grid(row=1, column=self.cols * 2 + 1)
+                Label(self.frame_inverse_output, text="not invertible!)").grid(row=2, column=self.cols * 2 + 1)
 
         Button(self.frame_inverse_input, text="Enter", width=8, command=get_mat).grid(row=self.cols + 10,
                                                                                       column=1)
 
+        self.gui_inverse_input.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_inverse_input.mainloop()
 
     def __init__(self):
@@ -152,3 +163,6 @@ class Inverse:
         OptionMenu(self.frame_inverse_menu, self.m_dimensions, *range(2, 16)).grid(row=4, column=2)
 
         Button(self.frame_inverse_menu, text='Enter', padx=16, pady=5, command=self.input_matrix).grid(row=5, column=2)
+
+        self.gui_inverse_menu.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
+        self.gui_inverse_menu.mainloop()
