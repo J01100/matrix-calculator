@@ -1,6 +1,7 @@
 from tkinter import Tk, Label, Button, Entry, OptionMenu, IntVar, StringVar, Frame
 from tkinter.constants import BOTH
 from numpy.linalg import inv
+import numpy as np
 import menu
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
