@@ -81,7 +81,6 @@ class Multi:
 
         self.rows_b, self.cols_b = (self.ma_cols.get(), self.mb_cols.get())
         for i in range(self.rows_b):
-            print(i)
             # append an empty list to arrays to append to later
             text_var_b.append([])
             entries_b.append([])
@@ -105,21 +104,34 @@ class Multi:
         # callback function to get StringVars/convert them to strings
         # and store in matrix[]
 
-        # def get_mat():
-        #     self.matrix = []
-        #     for i2 in range(self.rows_a):
-        #         self.matrix.append([])
-        #         for j2 in range(self.cols_a):
-        #             self.matrix[i2].append(text_var[i2][j2].get())
-        #     print(self.matrix)
+        def get_mat_a():
+            self.matrix_a = []
+            for i2 in range(self.rows_a):
+                self.matrix_a.append([])
+                for j2 in range(self.cols_a):
+                    self.matrix_a[i2].append(text_var[i2][j2].get())
+            print(self.matrix_a)
 
-        Button(self.frame_multi_input, text="Enter", width=8).grid(row=self.cols_a + self.cols_b + 10,
-                                                                   column=1)
+        def get_mat_b():
+            self.matrix_b = []
+            for i3 in range(self.rows_b):
+                self.matrix_b.append([])
+                for j3 in range(self.cols_b):
+                    self.matrix_b[i3].append(text_var_b[i3][j3].get())
+            print(self.matrix_b)
+
+        def get_mat():
+            get_mat_a()
+            get_mat_b()
+
+        Button(self.frame_multi_input, text="Enter", width=8, command=get_mat).grid(row=self.cols_a + self.cols_b + 10,
+                                                                                    column=1)
 
         self.gui_multi_input.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_multi_input.mainloop()
 
     def __init__(self):
+        self.matrix_a, self.matrix_b = None, None
         self.matrix = None
         self.gui_multi_input = None
         self.frame_multi_input = None
