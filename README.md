@@ -11,11 +11,10 @@ generate 2 matrices entry
 create Enter button
 output sum matrix 
 
-work matrix subtraction button 
+work matrix transpose button
 ask for dimensions
-generate 2 matrices entry
 create Enter button
-output difference matrix 
+output transposed matrix 
 
 work matrix multiplication button 
 ask for 2 matrix dimensions (the cols on matrix A must be the same as the rows on matrix B)
