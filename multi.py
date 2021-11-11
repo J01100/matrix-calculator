@@ -16,7 +16,6 @@ class Multi:
             for i in range(self.rows_a):
                 for j in range(self.cols_a):
                     self.matrix_a[i][j] = int(self.matrix_a[i][j])
-                    print(i, j)
 
             for i in range(self.rows_b):
                 for j in range(self.cols_b):
@@ -62,8 +61,8 @@ class Multi:
 
         for i in range(self.rows_b):
             for j in range(self.cols_b):
-                Label(self.frame_multi_output, text=self.matrix_b[i][j], bd=5).grid(row=i + 1, column=j +
-                                                                                                      self.cols_a * 2 + 2)
+                Label(self.frame_multi_output, text=self.matrix_b[i][j], bd=5).\
+                    grid(row=i + 1, column=j + self.cols_a * 2 + 2)
 
         # display output
         Label(self.frame_multi_output, text='Output:', font=('arial', 10, 'bold'), underline=0).grid(
@@ -201,10 +200,9 @@ class Multi:
         self.frame_multi_menu = Frame(self.gui_multi_menu, highlightbackground='black', highlightthickness=1)
         self.frame_multi_menu.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
-        # inputs
-        # Label(self.frame_multi_menu, text='NOTE: Matrix A height and Matrix B length').grid(row=1, column=1, columnspan=6)
-        # Label(self.frame_multi_menu, text='...are to be equal for multiplication').grid(row=2, column=1, columnspan=6)
-        # A matrix
+        # inputs Label(self.frame_multi_menu, text='NOTE: Matrix A height and Matrix B length').grid(row=1, column=1,
+        # columnspan=6) Label(self.frame_multi_menu, text='...are to be equal for multiplication').grid(row=2,
+        # column=1, columnspan=6) A matrix
         Label(self.frame_multi_menu, text='Matrix A dimensions:', font=('arial', 10, 'bold')).grid(row=3, column=1,
                                                                                                    columnspan=1)
         Label(self.frame_multi_menu, text='Matrix B dimensions:', font=('arial', 10, 'bold')).grid(row=4, column=1,

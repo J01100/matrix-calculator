@@ -21,3 +21,9 @@ ask for 2 matrix dimensions (the cols on matrix A must be the same as the rows o
 generate 2 matrices entry based on dimensions of matrix a and matrix b 
 create Enter button 
 output product matrix
+
+known issues:
+computed matrices become 1D lists of strings
+output elements are not seperated by columns
+new windows spawn randomly outside Mutter window manager; such as windows10 (may be solved by 
+                                                                switching to frame-by-frame control)
