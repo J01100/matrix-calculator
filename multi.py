@@ -40,7 +40,7 @@ class Multi:
         # create window
         self.gui_multi_input.destroy()
         self.gui_multi_output = Toplevel()
-        self.gui_multi_output.title("Inverse")
+        self.gui_multi_output.title("Multiply")
         self.gui_multi_output.resizable(False, False)
 
         self.frame_multi_output = Frame(self.gui_multi_output, highlightbackground='black', highlightthickness=1)
@@ -80,7 +80,7 @@ class Multi:
     def input_matrix(self):
         self.gui_multi_menu.destroy()
         self.gui_multi_input = Toplevel()
-        self.gui_multi_input.title("Inverse")
+        self.gui_multi_input.title("Multiply")
         self.gui_multi_input.resizable(False, False)
 
         self.frame_multi_input = Frame(self.gui_multi_input, highlightbackground='black', highlightthickness=1)
