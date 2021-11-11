@@ -17,13 +17,13 @@ class Menu:
 
         inv = Button(frame_menu, text="Inverse", padx=30, pady=5, command=inverse.Inverse)
         add = Button(frame_menu, text="Add", padx=40, pady=5)
-        sub = Button(frame_menu, text="Subtract", padx=25, pady=5)
+        #sub = Button(frame_menu, text="Subtract", padx=25, pady=5)
         mlt = Button(frame_menu, text="Multiply", padx=28, pady=5, command=multi.Multi)
 
         label.pack()
         inv.pack()
         add.pack()
-        sub.pack()
+        #sub.pack()
         mlt.pack()
 
         # def on_closing():

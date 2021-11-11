@@ -1,7 +1,9 @@
 to be added:
 
-change to frame by freme control system instead of destroying windows.
-back to menu button 
+add instruction manual to run
+
+change to frame by frme control system instead of destroying windows.
+back button on input window 
 
 work matrix addition button 
 ask for dimensions
