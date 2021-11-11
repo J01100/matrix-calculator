@@ -19,7 +19,8 @@ class Inverse:
                     self.matrix[i][j] = int(self.matrix[i][j])
 
         except NameError or TypeError or Exception:
-            Label(self.frame_inverse_output, text="Invalid input(s)").grid(row=1, column=2)
+            # Label(self.frame_inverse_output, text="Invalid input(s)").grid(row=1, column=2)
+            pass
 
         try:
             # invert matrix then convert back to string
@@ -128,7 +129,7 @@ class Inverse:
                 self.output_matrix()
 
             except ValueError or Exception:
-                Label(self.frame_inverse_output, text="Invalid input(s)").grid(row=1, column=2)
+                # Label(self.frame_inverse_output, text="Invalid input(s)").grid(row=1, column=2)
                 Label(self.frame_inverse_output, text="(Your matrix is").grid(row=1, column=self.cols * 2 + 1)
                 Label(self.frame_inverse_output, text="not invertible!)").grid(row=2, column=self.cols * 2 + 1)
 
