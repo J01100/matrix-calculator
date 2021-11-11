@@ -159,7 +159,7 @@ class Inverse:
         # enter matrix dimensions
         self.m_dimensions = IntVar()
         self.m_dimensions.set(2)
-        OptionMenu(self.frame_inverse_menu, self.m_dimensions, *range(2, 16)).grid(row=4, column=2)
+        OptionMenu(self.frame_inverse_menu, self.m_dimensions, *range(2, 5)).grid(row=4, column=2)
 
         Button(self.frame_inverse_menu, text='Enter', padx=16, pady=5, command=self.input_matrix).grid(row=5, column=2)
 
