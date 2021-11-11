@@ -10,29 +10,8 @@ class Multi:
         self.gui_multi_output.destroy()
         menu.gui_menu.deiconify()
 
-    def compute_inverse(self):
-        # convert matrix of strings to integers
-        try:
-            for i in range(self.rows_a):
-                for j in range(self.cols_a):
-                    self.matrix[i][j] = int(self.matrix[i][j])
-
-        except NameError or TypeError or Exception:
-            Label(self.frame_multi_output, text="Invalid input(s)").grid(row=1, column=2)
-
-        try:
-            # invert matrix then convert back to string
-            # self.matrix = inv(self.matrix)
-            list_mat = [str(i) for i in self.matrix]
-
-            # remove square brackets
-            for i in range(len(list_mat)):
-                list_mat[i] = list_mat[i][1:-1]
-            return list_mat
-
-        except TypeError or Exception:
-            Label(self.frame_multi_output, text="(Your matrix is").grid(row=1, column=self.cols_a * 2 + 1)
-            Label(self.frame_multi_output, text="not invertible!)").grid(row=2, column=self.cols_a * 2 + 1)
+    def compute_product(self):
+        pass
 
     def output_matrix(self):
         # create window
@@ -43,29 +22,6 @@ class Multi:
 
         self.frame_multi_output = Frame(self.gui_multi_output, highlightbackground='black', highlightthickness=1)
         self.frame_multi_output.pack(fill=BOTH, expand=True, padx=5, pady=5)
-
-        # go back to menu button
-        Button(self.frame_multi_output, text="Back", width=4, command=self.back_to_menu).grid(
-            row=self.rows_a + 10,
-            column=1)
-
-        # display user input
-        Label(self.frame_multi_output, text='Input:', font=('arial', 10, 'bold'), underline=0).grid(row=1, column=1)
-        for i in range(self.rows_a):
-            for j in range(self.cols_a):
-                Label(self.frame_multi_output, text=self.matrix[i][j], bd=5).grid(row=i + 1, column=j + 2)
-
-        # display output
-        Label(self.frame_multi_output, text='Output:', font=('arial', 10, 'bold'), underline=0).grid(row=1,
-                                                                                                     column=self.cols_a * 2)
-
-        inverse_matrix = self.compute_inverse()
-        for i in range(self.rows_a):
-            Label(self.frame_multi_output, text=inverse_matrix[i], bd=5).grid(
-                row=i + 1, column=self.cols_a * 2 + 1)
-
-        # def disable_event():
-        #    pass
 
         self.gui_multi_output.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_multi_output.mainloop()
@@ -83,7 +39,7 @@ class Multi:
         # window.geometry(window_dimensions)
         # self.gui_inverse_input.resizable(False, False)
 
-        Label(self.frame_multi_input, text="Enter matrix:", font=('arial', 10, 'bold')).grid(row=1, column=1)
+        Label(self.frame_multi_input, text="Enter matrix A:", font=('arial', 10, 'bold')).grid(row=1, column=1)
 
         # to create matrix of entry cells we need to create a 2d list of entries
         # thank god to stackoverflow peeps for that
@@ -114,25 +70,51 @@ class Multi:
                 # for row indications
                 Label(self.frame_multi_input, text=i + 1).grid(row=i + 2, column=1, sticky='e')
 
+        Label(self.frame_multi_input, text="Enter matrix B:", font=('arial', 10, 'bold')).grid(row=self.rows_a * 2,
+                                                                                               column=1)
+
+        # to create matrix of entry cells we need to create a 2d list of entries
+
+        # empty arrays for Entry and StringVars
+        text_var_b = []
+        entries_b = []
+
+        self.rows_b, self.cols_b = (self.ma_cols.get(), self.mb_cols.get())
+        for i in range(self.rows_b):
+            print(i)
+            # append an empty list to arrays to append to later
+            text_var_b.append([])
+            entries_b.append([])
+            for j in range(self.cols_b):
+                # for column indications
+                if i == 1:
+                    Label(self.frame_multi_input, text=alphabet[j]).grid(row=self.rows_a * 2, column=j + 2)
+
+                # append StringVar
+                text_var_b[i].append(StringVar())
+
+                # append the entry into the list
+                entries_b[i].append(Entry(self.frame_multi_input, textvariable=text_var_b[i][j], width=3))
+
+                # display entry
+                entries_b[i][j].grid(row=i + self.rows_a + 5, column=j + 2)
+
+                # for row indications
+                Label(self.frame_multi_input, text=i + 1).grid(row=i + self.rows_a + 5, column=1, sticky='e')
+
         # callback function to get StringVars/convert them to strings
         # and store in matrix[]
 
-        def get_mat():
-            try:
-                self.matrix = []
-                for i2 in range(self.rows_a):
-                    self.matrix.append([])
-                    for j2 in range(self.cols_a):
-                        self.matrix[i2].append(text_var[i2][j2].get())
-                self.output_matrix()
+        # def get_mat():
+        #     self.matrix = []
+        #     for i2 in range(self.rows_a):
+        #         self.matrix.append([])
+        #         for j2 in range(self.cols_a):
+        #             self.matrix[i2].append(text_var[i2][j2].get())
+        #     print(self.matrix)
 
-            except ValueError or Exception:
-                Label(self.frame_multi_output, text="Invalid input(s)").grid(row=1, column=2)
-                Label(self.frame_multi_output, text="(Your matrix is").grid(row=1, column=self.cols_a * 2 + 1)
-                Label(self.frame_multi_output, text="not invertible!)").grid(row=2, column=self.cols_a * 2 + 1)
-
-        Button(self.frame_multi_input, text="Enter", width=8, command=get_mat).grid(row=self.cols_a + 10,
-                                                                                     column=1)
+        Button(self.frame_multi_input, text="Enter", width=8).grid(row=self.cols_a + self.cols_b + 10,
+                                                                   column=1)
 
         self.gui_multi_input.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_multi_input.mainloop()
@@ -142,6 +124,7 @@ class Multi:
         self.gui_multi_input = None
         self.frame_multi_input = None
         self.rows_a, self.cols_a = None, None
+        self.rows_b, self.cols_b = None, None
         self.gui_multi_output = None
         self.frame_multi_output = None
 
@@ -164,17 +147,17 @@ class Multi:
 
         self.ma_rows = IntVar()
         self.ma_rows.set(2)
-        OptionMenu(self.frame_multi_menu, self.ma_rows, *range(2, 16)).grid(row=3, column=2)
+        OptionMenu(self.frame_multi_menu, self.ma_rows, *range(2, 5)).grid(row=3, column=2)
 
         Label(self.frame_multi_menu, text='x').grid(row=3, column=3)
 
         self.ma_cols = IntVar()
         self.ma_cols.set(2)
-        OptionMenu(self.frame_multi_menu, self.ma_cols, *range(2, 16)).grid(row=3, column=4)
+        OptionMenu(self.frame_multi_menu, self.ma_cols, *range(2, 5)).grid(row=3, column=4)
 
         # B matrix
         self.mb_rows = IntVar()
-        self.mb_rows.set(self.ma_cols.get())
+        # self.mb_rows.set(self.ma_cols.get())
         Label(self.frame_multi_menu, text="[n]", font=('arial', 10, 'bold'), padx=5, pady=5).grid(row=4, column=2)
         # OptionMenu(self.frame_multi_menu, self.mb_rows, *range(2, 16)).grid(row=2, column=2)
 
@@ -182,7 +165,7 @@ class Multi:
 
         self.mb_cols = IntVar()
         self.mb_cols.set(2)
-        OptionMenu(self.frame_multi_menu, self.mb_cols, *range(2, 16)).grid(row=4, column=4)
+        OptionMenu(self.frame_multi_menu, self.mb_cols, *range(2, 5)).grid(row=4, column=4)
 
         Button(self.frame_multi_menu, text='Enter', padx=16, pady=5, command=self.input_matrix).grid(row=5, column=4)
 
