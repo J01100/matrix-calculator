@@ -1,5 +1,7 @@
 to be added:
 
+rewrite all comments
+
 add instruction manual to run
 
 change to frame by frme control system instead of destroying windows.
