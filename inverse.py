@@ -58,7 +58,7 @@ class Inverse:
                 Label(self.frame_inverse_output, text=self.matrix[i][j], bd=5).grid(row=i + 1, column=j + 2)
 
         # display output
-        Label(self.frame_inverse_output, text='Output:', font=('arial', 10, 'bold'), underline=0).grid(row=1,
+        Label(self.frame_inverse_output, text='Inverted:', font=('arial', 10, 'bold'), underline=0).grid(row=1,
                                                                                                        column=self.cols * 2)
 
         inverse_matrix = self.compute_inverse()
