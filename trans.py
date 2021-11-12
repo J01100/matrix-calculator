@@ -46,7 +46,7 @@ class Trans:
                 Label(self.frame_trans_output, text=self.matrix[i][j], bd=5).grid(row=i + 1, column=j + 2)
 
         # display output
-        Label(self.frame_trans_output, text='Output:', font=('arial', 10, 'bold'), underline=0).grid(
+        Label(self.frame_trans_output, text='Transposed:', font=('arial', 10, 'bold'), underline=0).grid(
             row=self.rows_get * 2,
             column=1)
 
@@ -66,14 +66,8 @@ class Trans:
 
         self.frame_trans_input = Frame(self.gui_trans_input, highlightbackground='black', highlightthickness=1)
         self.frame_trans_input.pack(fill=BOTH, expand=True, padx=5, pady=5)
-        # window_dimensions = str(self.m_length.get()**3+90) + "x" + str(self.m_height.get())
-        # print(window_dimensions)
-        # window.geometry(window_dimensions)
-        # self.gui_inverse_input.resizable(False, False)
 
         Label(self.frame_trans_input, text="Enter matrix:", font=('arial', 10, 'bold')).grid(row=1, column=1)
-        # to create matrix of entry cells we need to create a 2d list of entries
-        # thank god to stackoverflow peeps for that
 
         # empty arrays for Entry and StringVars
         text_var = []
