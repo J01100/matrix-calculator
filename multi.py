@@ -13,6 +13,7 @@ class Multi:
 
     def compute_product(self):
         try:
+            # convert matrix_a and matrix_b to int
             for i in range(self.rows_a):
                 for j in range(self.cols_a):
                     self.matrix_a[i][j] = int(self.matrix_a[i][j])
@@ -21,28 +22,34 @@ class Multi:
                 for j in range(self.cols_b):
                     self.matrix_b[i][j] = int(self.matrix_b[i][j])
 
+            # use np.matmul to achieve product
             self.product_matrix = np.matmul(self.matrix_a, self.matrix_b)
+
         except TypeError or Exception:
             pass
 
         try:
+            # convert product_matrix back to str
             list_mat = [str(i) for i in self.product_matrix]
 
             # remove square brackets
             for i in range(len(list_mat)):
                 list_mat[i] = list_mat[i][1:-1]
+
+            # return product_matrix as a list of strings
             return list_mat
 
         except NameError or TypeError or Exception:
             pass
 
     def output_matrix(self):
-        # create window
+        # create output window
         self.gui_multi_input.destroy()
         self.gui_multi_output = Toplevel()
         self.gui_multi_output.title("Multiply")
         self.gui_multi_output.resizable(False, False)
 
+        # create output frame
         self.frame_multi_output = Frame(self.gui_multi_output, highlightbackground='black', highlightthickness=1)
         self.frame_multi_output.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
@@ -51,11 +58,14 @@ class Multi:
             row=self.rows_a + self.rows_b + 10,
             column=1)
 
+        # display matrix_a input
         Label(self.frame_multi_output, text='Matrix A:', font=('arial', 10, 'bold'), underline=0).grid(row=1, column=1)
+
         for i in range(self.rows_a):
             for j in range(self.cols_a):
                 Label(self.frame_multi_output, text=self.matrix_a[i][j], bd=5).grid(row=i + 1, column=j + 2)
 
+        # display matrix_b input
         Label(self.frame_multi_output, text='Matrix B:', font=('arial', 10, 'bold'), underline=0).grid(
             row=1, column=self.cols_a + 2)
 
@@ -64,25 +74,31 @@ class Multi:
                 Label(self.frame_multi_output, text=self.matrix_b[i][j], bd=5).\
                     grid(row=i + 1, column=j + self.cols_a * 2 + 2)
 
-        # display output
-        Label(self.frame_multi_output, text='Output:', font=('arial', 10, 'bold'), underline=0).grid(
+        # display product
+        Label(self.frame_multi_output, text='Product:', font=('arial', 10, 'bold'), underline=0).grid(
             row=self.rows_a * 2,
             column=1)
 
+        # compute product
         self.product_matrix = self.compute_product()
+
+        # display product
         for i in range(len(self.product_matrix)):
             Label(self.frame_multi_output, text=self.product_matrix[i], bd=5).grid(
                 row=i + self.rows_a * 2, column=2, columnspan=5, sticky='w  ')
 
+        # gui stuff
         self.gui_multi_output.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_multi_output.mainloop()
 
     def input_matrix(self):
+        # create input window
         self.gui_multi_menu.destroy()
         self.gui_multi_input = Toplevel()
         self.gui_multi_input.title("Multiply")
         self.gui_multi_input.resizable(False, False)
 
+        # create input frame
         self.frame_multi_input = Frame(self.gui_multi_input, highlightbackground='black', highlightthickness=1)
         self.frame_multi_input.pack(fill=BOTH, expand=True, padx=5, pady=5)
         # window_dimensions = str(self.m_length.get()**3+90) + "x" + str(self.m_height.get())
@@ -90,6 +106,7 @@ class Multi:
         # window.geometry(window_dimensions)
         # self.gui_inverse_input.resizable(False, False)
 
+        # create matrix A entries
         Label(self.frame_multi_input, text="Enter matrix A:", font=('arial', 10, 'bold')).grid(row=1, column=1)
         # to create matrix of entry cells we need to create a 2d list of entries
         # thank god to stackoverflow peeps for that
@@ -98,9 +115,12 @@ class Multi:
         text_var = []
         entries = []
 
+        # convert rows and cols from IntVar to int
         self.rows_a, self.cols_a = (self.ma_rows.get(), self.ma_cols.get())
+
+        # create the list of entries with corresponding text_vars
         for i in range(self.rows_a):
-            # append an empty list to arrays to append to later
+            # append an empty list to append to later
             text_var.append([])
             entries.append([])
             for j in range(self.cols_a):
@@ -123,36 +143,23 @@ class Multi:
         Label(self.frame_multi_input, text="Enter matrix B:", font=('arial', 10, 'bold')).grid(row=self.rows_a * 2,
                                                                                                column=1)
 
-        # to create matrix of entry cells we need to create a 2d list of entries
-        # empty arrays for Entry and StringVars
         text_var_b = []
         entries_b = []
 
         self.rows_b, self.cols_b = (self.ma_cols.get(), self.mb_cols.get())
         for i in range(self.rows_b):
-            # append an empty list to arrays to append to later
             text_var_b.append([])
             entries_b.append([])
             for j in range(self.cols_b):
-                # for column indications
                 if i == 1:
                     Label(self.frame_multi_input, text=alphabet[j]).grid(row=self.rows_a * 2, column=j + 2)
-
-                # append StringVar
                 text_var_b[i].append(StringVar())
-
-                # append the entry into the list
                 entries_b[i].append(Entry(self.frame_multi_input, textvariable=text_var_b[i][j], width=3))
-
-                # display entry
                 entries_b[i][j].grid(row=i + self.rows_a + 5, column=j + 2)
-
-                # for row indications
                 Label(self.frame_multi_input, text=i + 1).grid(row=i + self.rows_a + 5, column=1, sticky='e')
 
-        # callback function to get StringVars/convert them to strings
-        # and store in matrix[]
-
+        # callback functions to get StringVars/convert them to strings
+        # and store in matrices
         def get_mat_a():
             self.matrix_a = []
             for i2 in range(self.rows_a):
@@ -175,13 +182,16 @@ class Multi:
             except ValueError or Exception:
                 pass
 
+        # button to trigger the entire thing
         Button(self.frame_multi_input, text="Enter", width=8, command=get_mat).grid(row=self.cols_a + self.cols_b + 10,
                                                                                     column=1)
 
+        # gui stuff
         self.gui_multi_input.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_multi_input.mainloop()
 
     def __init__(self):
+        # pre-declare variables
         self.product_matrix = None
         self.matrix_a, self.matrix_b = None, None
         self.matrix = None
@@ -192,28 +202,37 @@ class Multi:
         self.gui_multi_output = None
         self.frame_multi_output = None
 
+        # create sub-menu window then withdraw main menu window
         menu.gui_menu.withdraw()
         self.gui_multi_menu = Toplevel()
         self.gui_multi_menu.title("Multiply")
         self.gui_multi_menu.resizable(False, False)
 
+        # create sub-menu frame
         self.frame_multi_menu = Frame(self.gui_multi_menu, highlightbackground='black', highlightthickness=1)
         self.frame_multi_menu.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
         # inputs Label(self.frame_multi_menu, text='NOTE: Matrix A height and Matrix B length').grid(row=1, column=1,
         # column span =6) Label(self.frame_multi_menu, text='...are to be equal for multiplication').grid(row=2,
         # column=1, column span =6) A matrix
+
+        # prompt dimensions
         Label(self.frame_multi_menu, text='Matrix A dimensions:', font=('arial', 10, 'bold')).grid(row=3, column=1,
                                                                                                    columnspan=1)
         Label(self.frame_multi_menu, text='Matrix B dimensions:', font=('arial', 10, 'bold')).grid(row=4, column=1,
                                                                                                    columnspan=1)
 
+        # create var for rows
         self.ma_rows = IntVar()
         self.ma_rows.set(2)
+
+        # drop down for rows
         OptionMenu(self.frame_multi_menu, self.ma_rows, *range(2, 5)).grid(row=3, column=2)
 
+        # 'x'
         Label(self.frame_multi_menu, text='x').grid(row=3, column=3)
 
+        # create var for cols
         self.ma_cols = IntVar()
         self.ma_cols.set(2)
         OptionMenu(self.frame_multi_menu, self.ma_cols, *range(2, 5)).grid(row=3, column=4)
@@ -230,7 +249,9 @@ class Multi:
         self.mb_cols.set(2)
         OptionMenu(self.frame_multi_menu, self.mb_cols, *range(2, 5)).grid(row=4, column=4)
 
+        # in order to move to input window
         Button(self.frame_multi_menu, text='Enter', padx=16, pady=5, command=self.input_matrix).grid(row=5, column=4)
 
+        # gui stuff
         self.gui_multi_menu.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_multi_menu.mainloop()
