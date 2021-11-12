@@ -38,7 +38,7 @@ class Trans:
 
         # go back to menu button
         Button(self.frame_trans_output, text="Back", width=4, command=self.back_to_menu).grid(
-            row=self.rows_get + self.rows + 10, column=1)
+            row=self.rows_get + self.rows_get + 10, column=1)
 
         Label(self.frame_trans_output, text='Input:', font=('arial', 10, 'bold'), underline=0).grid(row=1, column=1)
         for i in range(self.rows_get):
@@ -53,7 +53,7 @@ class Trans:
         self.transposed_matrix = self.compute_transpose()
         for i in range(self.cols_get):
             Label(self.frame_trans_output, text=self.transposed_matrix[i], bd=5).grid(
-                row=i + self.rows_get * 2, column=2, columnspan=self.cols, sticky='w ')
+                row=i + self.rows_get * 2, column=2, columnspan=self.cols_get, sticky='w ')
 
         self.gui_trans_output.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_trans_output.mainloop()
@@ -113,7 +113,7 @@ class Trans:
                 pass
 
         Button(self.frame_trans_input, text="Enter", width=8, command=get_mat)\
-            .grid(row=self.cols_get + self.cols + 10, column=1)
+            .grid(row=self.cols_get + self.cols_get + 10, column=1)
 
         self.gui_trans_input.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_trans_input.mainloop()
