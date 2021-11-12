@@ -3,6 +3,7 @@ from tkinter.constants import BOTH
 import inverse
 import multi
 import trans
+import add
 
 gui_menu = Tk()
 # gui_menu.geometry('150x180')
@@ -17,14 +18,14 @@ class Menu:
         label = Label(frame_menu, text="Choose Operation:", pady=10, font=('arial', 10, 'bold'))
 
         inv = Button(frame_menu, text="Inverse", padx=30, pady=5, command=inverse.Inverse)
-        add = Button(frame_menu, text="Add", padx=40, pady=5)
+        ad = Button(frame_menu, text="Add", padx=40, pady=5, command=add.Add)
         tran = Button(frame_menu, text="Transpose", padx=22, pady=5, command=trans.Trans)
         mlt = Button(frame_menu, text="Multiply", padx=28, pady=5, command=multi.Multi)
 
         label.pack()
         inv.pack()
         mlt.pack()
-        add.pack()
+        ad.pack()
         tran.pack()
 
         # def on_closing():
