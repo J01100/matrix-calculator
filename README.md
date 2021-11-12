@@ -1,28 +1,8 @@
-to be added:
+I didnt have time to refactor the code, apologies for the mess.
 
-rewrite all comments
-
-add instruction manual to run
-
-change to frame by frme control system instead of destroying windows.
-back button on input window 
-
-work matrix addition button 
-ask for dimensions
-generate 2 matrices entry
-create Enter button
-output sum matrix 
-
-work matrix transpose button
-ask for dimensions
-create Enter button
-output transposed matrix 
-
-work matrix multiplication button 
-ask for 2 matrix dimensions (the cols on matrix A must be the same as the rows on matrix B)
-generate 2 matrices entry based on dimensions of matrix a and matrix b 
-create Enter button 
-output product matrix
+scratched:
+-rewrite all comments
+-change to frame by frame control system instead of destroying windows.
 
 known issues:
 computed matrices become 1D lists of strings (may be solved by converting a space seperated string to elements in list)
