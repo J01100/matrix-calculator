@@ -201,8 +201,8 @@ class Multi:
         self.frame_multi_menu.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
         # inputs Label(self.frame_multi_menu, text='NOTE: Matrix A height and Matrix B length').grid(row=1, column=1,
-        # columnspan=6) Label(self.frame_multi_menu, text='...are to be equal for multiplication').grid(row=2,
-        # column=1, columnspan=6) A matrix
+        # column span =6) Label(self.frame_multi_menu, text='...are to be equal for multiplication').grid(row=2,
+        # column=1, column span =6) A matrix
         Label(self.frame_multi_menu, text='Matrix A dimensions:', font=('arial', 10, 'bold')).grid(row=3, column=1,
                                                                                                    columnspan=1)
         Label(self.frame_multi_menu, text='Matrix B dimensions:', font=('arial', 10, 'bold')).grid(row=4, column=1,

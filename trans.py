@@ -13,8 +13,8 @@ class Trans:
 
     def compute_transpose(self):
         try:
-            for i in range(self.rows):
-                for j in range(self.cols):
+            for i in range(self.rows_get):
+                for j in range(self.cols_get):
                     self.matrix[i][j] = int(self.matrix[i][j])
 
             list_mat = [str(i) for i in np.transpose(self.matrix)]
@@ -33,27 +33,27 @@ class Trans:
         self.gui_trans_output.title("Transpose")
         self.gui_trans_output.resizable(False, False)
 
-        self.frame_trans_output= Frame(self.gui_trans_output, highlightbackground='black', highlightthickness=1)
+        self.frame_trans_output = Frame(self.gui_trans_output, highlightbackground='black', highlightthickness=1)
         self.frame_trans_output.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
         # go back to menu button
         Button(self.frame_trans_output, text="Back", width=4, command=self.back_to_menu).grid(
-            row=self.rows + self.rows + 10, column=1)
+            row=self.rows_get + self.rows + 10, column=1)
 
         Label(self.frame_trans_output, text='Input:', font=('arial', 10, 'bold'), underline=0).grid(row=1, column=1)
-        for i in range(self.rows):
-            for j in range(self.cols):
+        for i in range(self.rows_get):
+            for j in range(self.cols_get):
                 Label(self.frame_trans_output, text=self.matrix[i][j], bd=5).grid(row=i + 1, column=j + 2)
 
         # display output
         Label(self.frame_trans_output, text='Output:', font=('arial', 10, 'bold'), underline=0).grid(
-            row=self.rows * 2,
+            row=self.rows_get * 2,
             column=1)
 
         self.transposed_matrix = self.compute_transpose()
-        for i in range(self.cols):
+        for i in range(self.cols_get):
             Label(self.frame_trans_output, text=self.transposed_matrix[i], bd=5).grid(
-                row=i + self.rows * 2, column=2, columnspan=self.cols, sticky='w ')
+                row=i + self.rows_get * 2, column=2, columnspan=self.cols, sticky='w ')
 
         self.gui_trans_output.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_trans_output.mainloop()
@@ -79,12 +79,12 @@ class Trans:
         text_var = []
         entries = []
 
-        self.rows, self.cols = (self.rows.get(), self.cols.get())
-        for i in range(self.rows):
+        self.rows_get, self.cols_get = (self.rows.get(), self.cols.get())
+        for i in range(self.rows_get):
             # append an empty list to arrays to append to later
             text_var.append([])
             entries.append([])
-            for j in range(self.cols):
+            for j in range(self.cols_get):
                 # for column indications
                 if i == 1:
                     Label(self.frame_trans_input, text=alphabet[j]).grid(row=1, column=j + 2)
@@ -104,15 +104,16 @@ class Trans:
         def get_mat():
             try:
                 self.matrix = []
-                for i2 in range(self.rows):
+                for i2 in range(self.rows_get):
                     self.matrix.append([])
-                    for j2 in range(self.cols):
+                    for j2 in range(self.cols_get):
                         self.matrix[i2].append(text_var[i2][j2].get())
                 self.output_matrix()
             except ValueError or Exception:
                 pass
 
-        Button(self.frame_trans_input, text="Enter", width=8, command=get_mat).grid(row=self.cols + self.cols + 10, column=1)
+        Button(self.frame_trans_input, text="Enter", width=8, command=get_mat)\
+            .grid(row=self.cols_get + self.cols + 10, column=1)
 
         self.gui_trans_input.protocol("WM_DELETE_WINDOW", menu.gui_menu.destroy)
         self.gui_trans_input.mainloop()
@@ -123,6 +124,8 @@ class Trans:
         self.gui_trans_output = None
         self.frame_trans_output = None
         self.transposed_matrix = None
+        self.matrix = None
+        self.rows_get, self.cols_get = None, None
 
         menu.gui_menu.withdraw()
         self.gui_trans_menu = Toplevel()
