@@ -1,3 +1,5 @@
+# WARNING; This app hasn't gone through careful testing. I'm not responsible if this app somehow ruins your computer. 
+
 I didnt have time to refactor the code, apologies for the mess.
 
 scratched:
