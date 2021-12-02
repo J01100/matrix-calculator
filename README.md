@@ -1,4 +1,4 @@
-#### WARNING; This app hasn't gone through careful testing. I'm not responsible if this app somehow ruins your computer. 
+#### WARNING; I'm not responsible if this app somehow ruins your computer, pretty sure it won't though. 
 
 ##### scratched:
 * rewrite all comments
