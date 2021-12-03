@@ -1,4 +1,6 @@
-#### WARNING; I'm not responsible if this app somehow ruins your computer, pretty sure it won't though. 
+#### WARNING; I'm not responsible if this app somehow ruins your computer, pretty sure it won't though.
+
+##### insert images here
 
 ##### scratched:
 * rewrite all comments
