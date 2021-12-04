@@ -6,11 +6,18 @@
 ![inverse](https://i.ibb.co/85B9LLv/2.png)
 ![inverse input](https://i.ibb.co/DRywQQt/3.png)
 ![inverse output](https://i.ibb.co/ySRQxM8/4.png)
-##### MULTIPLICATION
+##### MULTIPLY
 ![multiply](https://i.ibb.co/ZHr5Cf9/5.png)
 ![multiply input](https://i.ibb.co/zQbXP4c/6.png)
 ![multiply output](https://i.ibb.co/0XgwJBs/7.png)
-![multiply2_output](https://ibb.co/9wCqN5b)
+![multiply2 input](https://i.ibb.co/XW6gLNw/8.png)
+![multiply2_output](https://i.ibb.co/XyvzbR7/9.png)
+##### ADD
+![add input](https://i.ibb.co/GvW9rM5/10.png)
+![add_output](https://i.ibb.co/0KL4NYc/11.png)
+##### TRANSPOSE
+![transpose input](https://i.ibb.co/v4x1tF0/12.png)
+![transpose output](https://i.ibb.co/fD40jfn/13.png)
 
 #### scratched:
 * rewrite all comments
