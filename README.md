@@ -1,8 +1,13 @@
 #### WARNING; I'm not responsible if this app somehow ruins your computer, pretty sure it won't though.
 
-#### PREVIEW
 ##### MENU
 ![menu](https://i.ibb.co/ThDw5wG/1.png)
+##### INVERSE
+![inverse](https://ibb.co/MVh7xxw)
+![inverse dimensions](https://ibb.co/G5LCRR0)
+![inverse input](https://ibb.co/G5LCRR0)
+![inverse output](https://ibb.co/QdcKxq6)
+
 
 #### scratched:
 * rewrite all comments
