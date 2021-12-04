@@ -3,10 +3,9 @@
 ##### MENU
 ![menu](https://i.ibb.co/ThDw5wG/1.png)
 ##### INVERSE
-![inverse](https://ibb.co/MVh7xxw)
-![inverse dimensions](https://ibb.co/G5LCRR0)
-![inverse input](https://ibb.co/G5LCRR0)
-![inverse output](https://ibb.co/QdcKxq6)
+![inverse](https://i.ibb.co/85B9LLv/2.png)
+![inverse input](https://i.ibb.co/DRywQQt/3.png)
+![inverse output](https://i.ibb.co/ySRQxM8/4.png)
 
 
 #### scratched:
