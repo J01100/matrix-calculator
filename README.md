@@ -6,7 +6,11 @@
 ![inverse](https://i.ibb.co/85B9LLv/2.png)
 ![inverse input](https://i.ibb.co/DRywQQt/3.png)
 ![inverse output](https://i.ibb.co/ySRQxM8/4.png)
-
+##### MULTIPLICATION
+![multiply](https://i.ibb.co/ZHr5Cf9/5.png)
+![multiply input](https://i.ibb.co/zQbXP4c/6.png)
+![multiply output](https://i.ibb.co/0XgwJBs/7.png)
+![multiply2_output](https://ibb.co/9wCqN5b)
 
 #### scratched:
 * rewrite all comments
