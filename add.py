@@ -192,7 +192,7 @@ class Add:
         # create sub-menu window and withdraw main menu window
         menu.gui_menu.withdraw()
         self.gui_add_menu = Toplevel()
-        self.gui_add_menu.title("Multiply")
+        self.gui_add_menu.title("Add")
         self.gui_add_menu.resizable(False, False)
 
         # create sub-menu frame
