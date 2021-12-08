@@ -21,7 +21,6 @@ A desktop application that returns the inverse, product, sum, and transpose of m
 * Running this on Windows10 is not the best user experience.
 
 ## Possible updates:
-* Refine the GUI.
 * Code refactoring for readability and reusability.
 * Change to frame by frame control system instead of destroying windows.
 
