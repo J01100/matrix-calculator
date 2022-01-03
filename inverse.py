@@ -18,7 +18,7 @@ class Inverse:
                 for j in range(self.cols):
                     self.matrix[i][j] = int(self.matrix[i][j])
 
-        except NameError or TypeError or Exception:
+        except (NameError, TypeError, Exception):
             # Label(self.frame_inverse_output, text="Invalid input(s)").grid(row=1, column=2)
             pass
 
@@ -32,7 +32,7 @@ class Inverse:
                 list_mat[i] = list_mat[i][1:-1]
             return list_mat
 
-        except TypeError or Exception:
+        except (TypeError, Exception):
             Label(self.frame_inverse_output, text="(Your matrix is").grid(row=1, column=self.cols * 2 + 1)
             Label(self.frame_inverse_output, text="not invertible!)").grid(row=2, column=self.cols * 2 + 1)
 
@@ -128,7 +128,7 @@ class Inverse:
                         self.matrix[i2].append(text_var[i2][j2].get())
                 self.output_matrix()
 
-            except ValueError or Exception:
+            except (ValueError, Exception):
                 # Label(self.frame_inverse_output, text="Invalid input(s)").grid(row=1, column=2)
                 Label(self.frame_inverse_output, text="(Your matrix is").grid(row=1, column=self.cols * 2 + 1)
                 Label(self.frame_inverse_output, text="not invertible!)").grid(row=2, column=self.cols * 2 + 1)
