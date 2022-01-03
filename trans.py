@@ -24,7 +24,7 @@ class Trans:
                 list_mat[i] = list_mat[i][1:-1]
             return list_mat
 
-        except TypeError or Exception:
+        except (TypeError, Exception):
             pass
 
     def output_matrix(self):
@@ -103,7 +103,7 @@ class Trans:
                     for j2 in range(self.cols_get):
                         self.matrix[i2].append(text_var[i2][j2].get())
                 self.output_matrix()
-            except ValueError or Exception:
+            except (ValueError, Exception):
                 pass
 
         Button(self.frame_trans_input, text="Enter", width=8, command=get_mat)\

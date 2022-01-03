@@ -25,7 +25,7 @@ class Multi:
             # use np.matmul to achieve product
             self.product_matrix = np.matmul(self.matrix_a, self.matrix_b)
 
-        except TypeError or Exception:
+        except (TypeError, Exception):
             pass
 
         try:
@@ -39,7 +39,7 @@ class Multi:
             # return product_matrix as a list of strings
             return list_mat
 
-        except NameError or TypeError or Exception:
+        except (NameError, TypeError, Exception):
             pass
 
     def output_matrix(self):
@@ -179,7 +179,7 @@ class Multi:
                 get_mat_a()
                 get_mat_b()
                 self.output_matrix()
-            except ValueError or Exception:
+            except (ValueError, Exception):
                 pass
 
         # button to trigger the entire thing
