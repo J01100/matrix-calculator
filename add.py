@@ -24,7 +24,7 @@ class Add:
             # use np.add to achieve sum
             self.sum_matrix = np.add(self.matrix_a, self.matrix_b)
 
-        except TypeError or Exception:
+        except (TypeError, Exception):
             pass
 
         try:
@@ -38,7 +38,7 @@ class Add:
             # return sum_matrix as a list of strings
             return list_mat
 
-        except NameError or TypeError or Exception:
+        except (NameError, TypeError, Exception):
             pass
 
     def output_matrix(self):
@@ -168,7 +168,7 @@ class Add:
                 get_mat_a()
                 get_mat_b()
                 self.output_matrix()
-            except ValueError or Exception:
+            except (ValueError, Exception):
                 pass
 
         # button to trigger callback functions
